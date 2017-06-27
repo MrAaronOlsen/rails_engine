@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Items API' do
 
-  context 'Basic get requests'
+  context 'Basic get requests' do
     it 'sends list of all items' do
       create_list(:item, 3)
 
@@ -26,12 +26,10 @@ describe 'Items API' do
       expect(response).to be_success
       raw_item = JSON.parse(response.body)
 
-      expect(raw_items['name']).to eq(item.name)
-      expect(raw_items['description']).to eq(item.description)
-      expect(raw_items['unit_price']).to eq(item.unit_price)
-      expect(raw_items['merchant_id']).to eq(item.merchant_id)
-      expect(raw_items['created_at']).to eq(item.created_at)
-      expect(raw_items['updated_at']).to eq(item.updated_at)
+      expect(raw_item['name']).to eq(item.name)
+      expect(raw_item['description']).to eq(item.description)
+      expect(raw_item['unit_price']).to eq(item.unit_price.to_s)
+      expect(raw_item['merchant_id']).to eq(item.merchant_id)
     end
   end
 end
