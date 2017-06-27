@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Merchants API' do
 
-  context 'Basic get requests'
+  context 'Basic get requests' do
     it 'sends list of all merchants' do
       create_list(:merchant, 3)
 
@@ -23,9 +23,7 @@ describe 'Merchants API' do
       expect(response).to be_success
       raw_merchant = JSON.parse(response.body)
 
-      expect(raw_merchants['name']).to eq(merchant.name)
-      expect(raw_merchants['created_at']).to eq(merchant.created_at)
-      expect(raw_merchants['updated_at']).to eq(merchant.updated_at)
+      expect(raw_merchant['name']).to eq(merchant.name)
     end
   end
 end
