@@ -2,8 +2,8 @@ require 'rails_helper'
 
 describe 'Customers API' do
 
-  context 'Basic get requests' do
-    it 'sends list of all customers' do
+  context 'user wants to get customer' do
+    it 'gets list of all customers' do
       create_list(:customer, 3)
 
       get '/api/v1/customers'
@@ -13,11 +13,11 @@ describe 'Customers API' do
       expect(raw_customers.count).to eq(3)
       expect(raw_customers.first).to have_key('first_name')
       expect(raw_customers.first).to have_key('last_name')
-      expect(raw_customers.first).to have_key('created_at')
-      expect(raw_customers.first).to have_key('updated_at')
+      expect(raw_customers.first).not_to have_key('created_at')
+      expect(raw_customers.first).not_to have_key('updated_at')
     end
 
-    it 'shows a customer' do
+    it 'gets a customer' do
       customer = create(:customer)
 
       get "/api/v1/customers/#{customer.id}"
@@ -26,6 +26,96 @@ describe 'Customers API' do
 
       expect(raw_customer['first_name']).to eq(customer.first_name)
       expect(raw_customer['last_name']).to eq(customer.last_name)
+    end
+  end
+
+  context 'user wants to find a customer' do
+    before do
+      @customer = create_list(:customer, 10).sample
+    end
+
+    it 'finds customer by id' do
+      get "/api/v1/customers/find?id=#{@customer.id}"
+      expect(response).to be_success
+      found_customer = JSON.parse(response.body)
+
+      expect(@customer.id).to eq(found_customer['id'])
+      expect(@customer.first_name).to eq(found_customer['first_name'])
+    end
+
+    it 'finds customer by first_name' do
+      get "/api/v1/customers/find?first_name=#{@customer.first_name}"
+      expect(response).to be_success
+      found_customer = JSON.parse(response.body)
+
+      expect(@customer.id).to eq(found_customer['id'])
+      expect(@customer.first_name).to eq(found_customer['first_name'])
+    end
+
+    it 'finds customer by last_name' do
+      customer = create(:customer, last_name: 'Artax')
+
+      get "/api/v1/customers/find?last_name=#{customer.last_name}"
+      expect(response).to be_success
+      found_customer = JSON.parse(response.body)
+
+      expect(customer.id).to eq(found_customer['id'])
+      expect(customer.last_name).to eq(found_customer['last_name'])
+    end
+
+    it 'finds customer by created_at' do
+
+      get "/api/v1/customers/find?created_at=#{@customer.created_at}"
+      expect(response).to be_success
+      found_customer = JSON.parse(response.body)
+
+      expect(@customer.id).to eq(found_customer['id'])
+      expect(@customer.last_name).to eq(found_customer['last_name'])
+    end
+
+    it 'finds customer by updated_at' do
+
+      get "/api/v1/customers/find?updated_at=#{@customer.updated_at}"
+      expect(response).to be_success
+      found_customer = JSON.parse(response.body)
+
+      expect(@customer.id).to eq(found_customer['id'])
+      expect(@customer.last_name).to eq(found_customer['last_name'])
+    end
+  end
+
+  context 'user wants to find a customer' do
+    before do
+      @customer = create_list(:customer, 10).sample
+    end
+
+    it 'finds customer by id' do
+      get "/api/v1/customers/find?id=#{@customer.id}"
+      expect(response).to be_success
+      found_customer = JSON.parse(response.body)
+
+      expect(@customer.id).to eq(found_customer['id'])
+      expect(@customer.first_name).to eq(found_customer['first_name'])
+    end
+
+    it 'finds all customers by first_name' do
+      get "/api/v1/customers/find?first_name=#{@customer.first_name}"
+      expect(response).to be_success
+      found_customer = JSON.parse(response.body)
+
+      expect(@customer.id).to eq(found_customer['id'])
+      expect(@customer.first_name).to eq(found_customer['first_name'])
+    end
+
+    it 'finds all customers by last_name' do
+      customer = create(:customer, last_name: 'Artax')
+
+      get "/api/v1/customers/find?last_name=#{customer.last_name}"
+      expect(response).to be_success
+      found_customer = JSON.parse(response.body)
+
+      expect(customer.id).to eq(found_customer['id'])
+      expect(customer.last_name).to eq(found_customer['last_name'])
     end
   end
 end
