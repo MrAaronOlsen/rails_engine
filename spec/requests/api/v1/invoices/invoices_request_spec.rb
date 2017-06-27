@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Invoices API' do
 
-  context 'Basic get requests'
+  context 'Basic get requests' do
     it 'sends list of all invoices' do
       create_list(:invoice, 3)
 
@@ -28,8 +28,6 @@ describe 'Invoices API' do
       expect(raw_invoice['customer_id']).to eq(invoice.customer_id)
       expect(raw_invoice['merchant_id']).to eq(invoice.merchant_id)
       expect(raw_invoice['status']).to eq(invoice.status)
-      expect(raw_invoice['created_at']).to eq(invoice.created_at)
-      expect(raw_invoice['updated_at']).to eq(invoice.updated_at)
     end
   end
 end

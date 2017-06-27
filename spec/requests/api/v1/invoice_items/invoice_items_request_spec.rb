@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'Invoice Items API' do
 
-  context 'Basic get requests'
+  context 'Basic get requests' do
     it 'sends list of all invoice_items' do
       create_list(:invoice_item, 3)
 
@@ -12,7 +12,7 @@ describe 'Invoice Items API' do
 
       expect(raw_invoice_items.count).to eq(3)
       expect(raw_invoice_items.first).to have_key('item_id')
-      expect(raw_invoice_items.first).to have_key('invoice_item_id')
+      expect(raw_invoice_items.first).to have_key('invoice_id')
       expect(raw_invoice_items.first).to have_key('quantity')
       expect(raw_invoice_items.first).to have_key('unit_price')
       expect(raw_invoice_items.first).to have_key('created_at')
@@ -27,11 +27,9 @@ describe 'Invoice Items API' do
       raw_invoice_item = JSON.parse(response.body)
 
       expect(raw_invoice_item['item_id']).to eq(invoice_item.item_id)
-      expect(raw_invoice_item['invoice_item_id']).to eq(invoice_item.invoice_item_id)
+      expect(raw_invoice_item['invoice_id']).to eq(invoice_item.invoice_id)
       expect(raw_invoice_item['quantity']).to eq(invoice_item.quantity)
-      expect(raw_invoice_item['unit_price']).to eq(invoice_item.unit_price)
-      expect(raw_invoice_item['created_at']).to eq(invoice_item.created_at)
-      expect(raw_invoice_item['updated_at']).to eq(invoice_item.updated_at)
+      expect(raw_invoice_item['unit_price']).to eq(invoice_item.unit_price.to_s)
     end
   end
 end
