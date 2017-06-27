@@ -31,7 +31,7 @@ describe 'Customers API' do
 
   context 'user wants to find a customer' do
     before do
-      @customer = create_list(:customer, 10).sample
+      @customer = create_list(:customer, 10).first
     end
 
     it 'finds customer by id' do
@@ -84,38 +84,47 @@ describe 'Customers API' do
     end
   end
 
-  context 'user wants to find a customer' do
+  context 'user wants to find customers' do
     before do
-      @customer = create_list(:customer, 10).sample
+      @customers = create_list(:customer, 10)
     end
 
-    it 'finds customer by id' do
-      get "/api/v1/customers/find?id=#{@customer.id}"
-      expect(response).to be_success
-      found_customer = JSON.parse(response.body)
+    it 'finds all customers by id' do
+      customers = create_list(:customer, 1)
 
-      expect(@customer.id).to eq(found_customer['id'])
-      expect(@customer.first_name).to eq(found_customer['first_name'])
+      get "/api/v1/customers/find_all?id=#{customers.first.id}"
+      expect(response).to be_success
+      found_customers = JSON.parse(response.body)
+
+      expect(found_customers.count).to eq(1)
+
+      found_customers.each_with_index do |found_customer, i|
+        expect(found_customer['id']).to eq(customers[i].id)
+      end
     end
 
     it 'finds all customers by first_name' do
-      get "/api/v1/customers/find?first_name=#{@customer.first_name}"
+      get "/api/v1/customers/find_all?first_name=#{@customers.first.first_name}"
       expect(response).to be_success
-      found_customer = JSON.parse(response.body)
+      found_customers = JSON.parse(response.body)
 
-      expect(@customer.id).to eq(found_customer['id'])
-      expect(@customer.first_name).to eq(found_customer['first_name'])
+      expect(found_customers.count).to eq(10)
+
+      found_customers.each_with_index do |found_customer, i|
+        expect(found_customer['id']).to eq(@customers[i].id)
+      end
     end
 
     it 'finds all customers by last_name' do
-      customer = create(:customer, last_name: 'Artax')
-
-      get "/api/v1/customers/find?last_name=#{customer.last_name}"
+      get "/api/v1/customers/find_all?last_name=#{@customers.first.last_name}"
       expect(response).to be_success
-      found_customer = JSON.parse(response.body)
+      found_customers = JSON.parse(response.body)
 
-      expect(customer.id).to eq(found_customer['id'])
-      expect(customer.last_name).to eq(found_customer['last_name'])
+      expect(found_customers.count).to eq(10)
+
+      found_customers.each_with_index do |found_customer, i|
+        expect(found_customer['id']).to eq(@customers[i].id)
+      end
     end
   end
 end

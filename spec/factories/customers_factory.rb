@@ -1,10 +1,8 @@
 FactoryGirl.define do
 
   factory :customer do
-    sequence :first_name do |n|
-      "Spungebob#{n}"
-    end
 
+    first_name 'Spongebob'
     last_name 'Squarepants'
 
     sequence :created_at do |n|
