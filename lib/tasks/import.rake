@@ -10,4 +10,10 @@ task :import => [:environment] do
                                                   :last_name,
                                                   :created_at,
                                                   :updated_at )
+
+  Loader.new("lib/data/merchants.csv").load_data( Merchant,
+                                                  :id,
+                                                  :name,
+                                                  :created_at,
+                                                  :updated_at )
 end

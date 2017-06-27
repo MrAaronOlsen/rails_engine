@@ -7,6 +7,11 @@ Rails.application.routes.draw do
         resources :find_all, only: [:index], controller: 'find_all_customers'
       end
 
+      namespace :merchants do
+        resources :find, only: [:index], controller: 'find_merchant'
+        resources :find_all, only: [:index], controller: 'find_all_merchants'
+      end
+
       resources :customers, only: [:show, :index]
       resources :merchants, only: [:show, :index]
       resources :items, only: [:show, :index]
