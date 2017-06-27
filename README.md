@@ -1,13 +1,22 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Items: id, name, description, unit_price, merchant_id, created_at, updated_at
+
+Customers: id, first_name, last_name, created_at, updated_at
+
+Invoice Items: id, item_id, invoice_id, quantity, unit_price, created_at, updated_at
+
+Invoices: id, customer_id, merchant_id, status, created_at, updated_at
+
+Merchants: id, name, created_at, updated_at
+
+Transactions: id, invoice_id, credit_card_number, credit_card_expiration_date, result, created_at, updated_at
 
 Things you may want to cover:
 
-* Ruby version
+* Ruby 2.4.1
 
-* System dependencies
+* Rails 5.1.2
 
 * Configuration
 
