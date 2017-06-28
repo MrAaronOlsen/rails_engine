@@ -1,7 +1,7 @@
 class Api::V1::Merchants::MostItemsController < ApplicationController
 
   def index
-    render json: Merchant.most_items(search_params[:quantity])
+    render json: Merchant.with_most_items(search_params[:quantity])
   end
 
   def search_params

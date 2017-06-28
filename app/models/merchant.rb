@@ -4,9 +4,14 @@ class Merchant <  ApplicationRecord
 
   validates_presence_of :name
 
+  def total_revenue
+    self.invoices.joins(:invoice_items).joins(:transactions)
+    .where("transactions.result = 1")
+    .sum('invoice_items.unit_price * invoice_items.quantity')
+  end
 
   class << self
-    def most_revenue(quantity)
+    def with_most_revenue(quantity)
       Merchant.find_by_sql [
         "SELECT merchants.name, merchants.id, sum(invoice_items.quantity * invoice_items.unit_price) AS total_revenue
         FROM merchants
@@ -19,7 +24,7 @@ class Merchant <  ApplicationRecord
         LIMIT ?", quantity ]
     end
 
-    def most_items(quantity)
+    def with_most_items(quantity)
       Merchant.find_by_sql [
         "SELECT merchants.name, merchants.id, sum(invoice_items.quantity) AS total_revenue
         FROM merchants
@@ -32,10 +37,10 @@ class Merchant <  ApplicationRecord
         LIMIT ?", quantity ]
     end
 
-    def revenue(date)
-      { "total_revenue" => Invoice.joins(:invoice_items).joins(:transactions)
+    def total_revenue_by_date(date)
+      Invoice.joins(:invoice_items).joins(:transactions)
         .where('transactions.result = 1 and invoices.created_at = ?', date)
-        .sum('invoice_items.quantity * invoice_items.unit_price') }
+        .sum('invoice_items.quantity * invoice_items.unit_price')
     end
   end
 end

@@ -12,7 +12,11 @@ Rails.application.routes.draw do
         resources :find_all, only: [:index], controller: 'find_all_merchants'
         resources :most_revenue, only: [:index], controller: 'most_revenue'
         resources :most_items, only: [:index], controller: 'most_items'
-        resources :revenue, only: [:index], controller: 'revenue'
+        resources :revenue, only: [:index], controller: 'top_revenue'
+      end
+
+      resources :merchants, only: :none do
+        resources :revenue, only: [:index], controller: 'merchants/merchant_revenue'
       end
 
       namespace :items do
