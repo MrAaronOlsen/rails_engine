@@ -4,62 +4,58 @@ desc "Import product from csv file"
 
 task :import => [:environment] do
 
+  Customer.destroy_all
+  Merchant.destroy_all
+  Item.destroy_all
+  Invoice.destroy_all
+  InvoiceItem.destroy_all
+  Transaction.destroy_all
+
+# Customers
+
   puts 'Loading Customers'
-  Loader.new("lib/data/customers.csv").load_data( Customer,
-                                                  :id,
-                                                  :first_name,
-                                                  :last_name,
-                                                  :created_at,
-                                                  :updated_at )
+  Loader.new("lib/data/customers.csv").load_data do |row|
+    Customer.create(row)
+  end
   puts "Loaded #{Customer.count} Customers"
 
-  puts 'Loading Merchants'
-  Loader.new("lib/data/merchants.csv").load_data( Merchant,
-                                                  :id,
-                                                  :name,
-                                                  :created_at,
-                                                  :updated_at )
+# Merchants
 
+  puts 'Loading Merchants'
+  Loader.new("lib/data/merchants.csv").load_data do |row|
+    Merchant.create(row)
+  end
   puts "Loaded #{Merchant.count} Merchants"
 
+# Items
+
   puts 'Loading Items'
-  Loader.new("lib/data/items.csv").load_data(     Item,
-                                                  :id,
-                                                  :name,
-                                                  :description,
-                                                  :unit_price,
-                                                  :merchant_id,
-                                                  :created_at,
-                                                  :updated_at )
+  Loader.new("lib/data/items.csv").load_data do |row|
+    Item.create(row)
+  end
   puts "Loaded #{Item.count} Items"
 
+# Invoices
+
   puts 'Loading Invoices'
-  Loader.new("lib/data/invoices.csv").load_data(  Invoice,
-                                                  :status,
-                                                  :merchant_id,
-                                                  :customer_id,
-                                                  :created_at,
-                                                  :updated_at )
+  Loader.new("lib/data/invoices.csv").load_data do |row|
+    Invoice.create(row)
+  end
   puts "Loaded #{Invoice.count} Invoices"
 
-  puts 'Loading Invoice_Items'
-  Loader.new("lib/data/invoice_items.csv").load_data(  InvoiceItem,
-                                                  :quantity,
-                                                  :unit_price,
-                                                  :invoice_id,
-                                                  :item_id,
-                                                  :created_at,
-                                                  :updated_at )
+# Invoice_Items
 
+  puts 'Loading Invoice_Items'
+  Loader.new("lib/data/invoice_items.csv").load_data do |row|
+    InvoiceItem.create(row)
+  end
   puts "Loaded #{InvoiceItem.count} Invoice_Items"
 
+# Transactions
+
   puts 'Loading Transactions'
-  Loader.new("lib/data/transactions.csv").load_data(  Transaction,
-                                                  :result,
-                                                  :credit_card_number,
-                                                  :credit_card_experation_date,
-                                                  :invoice_id,
-                                                  :created_at,
-                                                  :updated_at )
+  Loader.new("lib/data/transactions.csv").load_data do |row|
+    Transaction.create(row)
+  end
   puts "Loaded #{Transaction.count} Transactions"
 end

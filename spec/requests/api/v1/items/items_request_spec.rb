@@ -72,6 +72,15 @@ describe 'Items API' do
       expect(@item.name).to eq(found_item['name'])
     end
 
+    it 'finds item by merchant_id' do
+      get "/api/v1/items/find?merchant_id=#{@item.merchant_id}"
+      expect(response).to be_success
+      found_item = JSON.parse(response.body)
+
+      expect(@item.id).to eq(found_item['id'])
+      expect(@item.name).to eq(found_item['name'])
+    end
+
     it 'finds item by created_at' do
       get "/api/v1/items/find?created_at=#{@item.created_at}"
       expect(response).to be_success
@@ -136,6 +145,21 @@ describe 'Items API' do
 
     it 'finds all items by unit_price' do
       get "/api/v1/items/find_all?unit_price=#{@items.first.unit_price}"
+      expect(response).to be_success
+      found_items = JSON.parse(response.body)
+
+      expect(found_items.count).to eq(10)
+
+      found_items.each_with_index do |found_item, i|
+        expect(found_item['id']).to eq(@items[i].id)
+      end
+    end
+
+    it 'finds all items by merchant_id' do
+      merchant = create(:merchant)
+      @items = create_list(:item, 10, merchant_id: merchant.id)
+
+      get "/api/v1/items/find_all?merchant_id=#{@items.first.merchant_id}"
       expect(response).to be_success
       found_items = JSON.parse(response.body)
 
