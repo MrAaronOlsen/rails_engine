@@ -2,12 +2,27 @@ class Merchant <  ApplicationRecord
   has_many :items, dependent: :destroy
   has_many :invoices, dependent: :destroy
 
+  has_many :customers, through: :invoices
+
   validates_presence_of :name
 
-  def total_revenue
+  def total_revenue_for
     self.invoices.joins(:invoice_items).joins(:transactions)
-    .where("transactions.result = 1")
-    .sum('invoice_items.unit_price * invoice_items.quantity')
+      .where('transactions.result = 1')
+      .sum('invoice_items.unit_price * invoice_items.quantity')
+  end
+
+  def total_revenue_by_date_for(date)
+    self.invoices.joins(:invoice_items).joins(:transactions)
+      .where('transactions.result = 1 and invoices.created_at = ?', date)
+      .sum('invoice_items.unit_price * invoice_items.quantity')
+  end
+
+  def favorite_customer_for
+    self.customers
+      .select("customers.*, count('invoices.customer_id') AS invoice_count")
+      .joins(:invoices).group('customers.id')
+      .order('invoice_count DESC').limit(1)
   end
 
   class << self

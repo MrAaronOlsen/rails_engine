@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
       resources :merchants, only: :none do
         resources :revenue, only: [:index], controller: 'merchants/merchant_revenue'
+        resources :favorite_customer, only: [:index], controller: 'merchants/merchant_fav_customer'
+        resources :customers_with_pending_invoices, only: [:index], controller: 'merchants/pending_invoices'
       end
 
       namespace :items do
