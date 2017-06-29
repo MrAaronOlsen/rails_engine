@@ -25,6 +25,24 @@ class Merchant <  ApplicationRecord
       .order('invoice_count DESC').limit(1)
   end
 
+  def pending_invoices
+    self.customers.find_by_sql [
+      "SELECT customers.* FROM customers
+        JOIN invoices ON invoices.customer_id = customers.id
+          AND invoices.merchant_id = ?
+        JOIN (
+          SELECT * FROM transactions WHERE result = 0 ) AS transactions
+        ON transactions.invoice_id = invoices.id
+      EXCEPT
+      SELECT customers.* FROM customers
+        JOIN invoices ON invoices.customer_id = customers.id
+          AND invoices.merchant_id = ?
+        JOIN (
+          SELECT * FROM transactions WHERE result = 1 ) AS transactions
+      ON transactions.invoice_id = invoices.id
+      GROUP BY customers.id", self.id, self.id ]
+  end
+
   class << self
     def with_most_revenue(quantity)
       Merchant.find_by_sql [
@@ -32,7 +50,7 @@ class Merchant <  ApplicationRecord
         FROM merchants
         INNER JOIN invoices ON invoices.merchant_id = merchants.id
         INNER JOIN invoice_items ON invoice_items.invoice_id = invoices.id
-        INNER JOIN transactions on transactions.invoice_id = invoices.id
+        INNER JOIN transactions ON transactions.invoice_id = invoices.id
         WHERE transactions.result = 1
         GROUP BY merchants.id, merchants.name
         ORDER BY total_revenue DESC
