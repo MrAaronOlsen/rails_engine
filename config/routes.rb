@@ -8,6 +8,8 @@ Rails.application.routes.draw do
       end
 
       resources :customers, only: :none do
+        resources :invoices, only: [:index], controller: 'customers/cust_invoices'
+        resources :transactions, only: [:index], controller: 'customers/cust_transactions'
         resources :favorite_merchant, only: [:index], controller: 'customers/fav_merchant'
       end
 
