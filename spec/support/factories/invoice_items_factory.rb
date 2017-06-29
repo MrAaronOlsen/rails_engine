@@ -1,14 +1,8 @@
 FactoryGirl.define do
 
   factory :invoice_item do
-    sequence :quantity do |i|
-      i
-    end
-
-    sequence :unit_price do |i|
-      345.56 + (i*10)
-    end
-
+    quantity 3
+    unit_price '1000'
     item
     invoice
 

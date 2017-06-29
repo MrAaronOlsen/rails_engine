@@ -27,7 +27,7 @@ FactoryGirl.define do
 
     trait :with_invoice_items do
       after(:create) do |object|
-        object.invoice_items << create_list(:invoice_item, 3)
+        object.invoice_items << create_list(:invoice_item, 3, unit_price: 10.0)
         object.transactions << create_list(:transaction, 1)
         object.created_at = "2067-03-27 14:54:12 UTC"
       end

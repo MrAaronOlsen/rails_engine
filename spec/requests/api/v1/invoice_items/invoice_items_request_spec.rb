@@ -134,7 +134,7 @@ describe 'Invoice Items API' do
       expect(response).to be_success
       found_invoice_items = JSON.parse(response.body)
 
-      expect(found_invoice_items.count).to eq(1)
+      expect(found_invoice_items.count).to eq(10)
 
       found_invoice_items.each_with_index do |found_invoice_item, i|
         expect(found_invoice_item['id']).to eq(@invoice_items[i].id)
@@ -143,9 +143,9 @@ describe 'Invoice Items API' do
 
     it 'finds all invoice_items by item_id' do
       item = create(:item)
-      @invoice_items = create_list(:invoice_item, 10, item_id: item.id)
+      @invoice_items = create_list(:invoice_item, 10, item: item)
 
-      get "/api/v1/invoice_items/find_all?item_id=#{@invoice_items.first.item_id}"
+      get "/api/v1/invoice_items/find_all?item_id=#{item.id}"
       expect(response).to be_success
       found_invoice_items = JSON.parse(response.body)
 
@@ -158,9 +158,9 @@ describe 'Invoice Items API' do
 
     it 'finds all invoice_items by invoice_id' do
       invoice = create(:invoice)
-      @invoice_items = create_list(:invoice_item, 10, invoice_id: invoice.id)
+      @invoice_items = create_list(:invoice_item, 10, invoice: invoice)
 
-      get "/api/v1/invoice_items/find_all?invoice_id=#{@invoice_items.first.invoice_id}"
+      get "/api/v1/invoice_items/find_all?invoice_id=#{invoice.id}"
       expect(response).to be_success
       found_invoice_items = JSON.parse(response.body)
 
