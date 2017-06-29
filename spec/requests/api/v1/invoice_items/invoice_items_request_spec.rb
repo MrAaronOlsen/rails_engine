@@ -116,14 +116,16 @@ describe 'Invoice Items API' do
     end
 
     it 'finds all invoice_items by quantity' do
-      get "/api/v1/invoice_items/find_all?quantity=#{@invoice_items.first.quantity}"
+      invoice_items = create_list(:invoice_item, 10, quantity: 134)
+
+      get "/api/v1/invoice_items/find_all?quantity=#{invoice_items.first.quantity}"
       expect(response).to be_success
       found_invoice_items = JSON.parse(response.body)
 
       expect(found_invoice_items.count).to eq(10)
 
       found_invoice_items.each_with_index do |found_invoice_item, i|
-        expect(found_invoice_item['id']).to eq(@invoice_items[i].id)
+        expect(found_invoice_item['id']).to eq(invoice_items[i].id)
       end
     end
 
@@ -132,7 +134,7 @@ describe 'Invoice Items API' do
       expect(response).to be_success
       found_invoice_items = JSON.parse(response.body)
 
-      expect(found_invoice_items.count).to eq(10)
+      expect(found_invoice_items.count).to eq(1)
 
       found_invoice_items.each_with_index do |found_invoice_item, i|
         expect(found_invoice_item['id']).to eq(@invoice_items[i].id)

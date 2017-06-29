@@ -7,26 +7,26 @@ class Merchant <  ApplicationRecord
   validates_presence_of :name
 
   def total_revenue_for
-    self.invoices.joins(:invoice_items).joins(:transactions)
+    invoices.joins(:invoice_items).joins(:transactions)
       .where('transactions.result = 1')
       .sum('invoice_items.unit_price * invoice_items.quantity')
   end
 
   def total_revenue_by_date_for(date)
-    self.invoices.joins(:invoice_items).joins(:transactions)
+    invoices.joins(:invoice_items).joins(:transactions)
       .where('transactions.result = 1 and invoices.created_at = ?', date)
       .sum('invoice_items.unit_price * invoice_items.quantity')
   end
 
   def favorite_customer_for
-    self.customers
+    customers
       .select("customers.*, count('invoices.customer_id') AS invoice_count")
       .joins(:invoices).group('customers.id')
       .order('invoice_count DESC').limit(1)
   end
 
   def pending_invoices
-    self.customers.find_by_sql [
+    customers.find_by_sql [
       "SELECT customers.* FROM customers
         JOIN invoices ON invoices.customer_id = customers.id
           AND invoices.merchant_id = ?
