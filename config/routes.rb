@@ -7,6 +7,10 @@ Rails.application.routes.draw do
         resources :find_all, only: [:index], controller: 'find_all_customers'
       end
 
+      resources :customers, only: :none do
+        resources :favorite_merchant, only: [:index], controller: 'customers/fav_merchant'
+      end
+
       namespace :merchants do
         resources :find, only: [:index], controller: 'find_merchant'
         resources :find_all, only: [:index], controller: 'find_all_merchants'
