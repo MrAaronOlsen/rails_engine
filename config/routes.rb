@@ -47,6 +47,14 @@ Rails.application.routes.draw do
         resources :find_all, only: [:index], controller: 'find_all_invoices'
       end
 
+      resources :invoices do
+        resources :transactions, only: [:index], controller: 'invoices/transactions'
+        resources :invoice_items, only: [:index], controller: 'invoices/invoice_items'
+        resources :items, only: [:index], controller: 'invoices/items'
+        resources :customer, only: [:index], controller: 'invoices/customer'
+        resources :merchant, only: [:index], controller: 'invoices/merchant'
+      end
+
       namespace :invoice_items do
         resources :find, only: [:index], controller: 'find_invoice_item'
         resources :find_all, only: [:index], controller: 'find_all_invoice_items'
