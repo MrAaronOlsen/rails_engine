@@ -24,6 +24,12 @@ Rails.application.routes.draw do
       namespace :items do
         resources :find, only: [:index], controller: 'find_item'
         resources :find_all, only: [:index], controller: 'find_all_items'
+        resources :most_revenue, only: [:index], controller: 'most_revenue'
+        resources :most_items, only: [:index], controller: 'most_items'
+      end
+
+      resources :items, only: :none do
+        resources :best_day, only: [:index], controller: 'items/best_day'
       end
 
       namespace :invoices do
