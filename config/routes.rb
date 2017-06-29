@@ -36,6 +36,8 @@ Rails.application.routes.draw do
 
       resources :items, only: :none do
         resources :best_day, only: [:index], controller: 'items/best_day'
+        resources :invoice_items, only: [:index], controller: 'items/invoice_items'
+        resources :merchant, only: [:index], controller: 'items/merchant'
       end
 
       namespace :invoices do
