@@ -16,16 +16,13 @@
 * Ruby 2.4.1
 * Rails 5.1.2
 
-* Configuration
+### Install
 
-* Database creation
+* Clone repo, 
+* $ bundle install, to install all dependencies
+* $ rake db:setup, to initialize database
+* $ rake import, to seed database
 
-* Database initialization
+### Use
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* $ rails s, to spin up local server
