@@ -3,34 +3,34 @@ Rails.application.routes.draw do
     namespace :v1 do
 
       namespace :customers do
-        resources :find, only: [:index], controller: 'find_customer'
-        resources :find_all, only: [:index], controller: 'find_all_customers'
+        resources :find, only: [:index]
+        resources :find_all, only: [:index]
         resources :random, only: [:index]
-      end
 
-      resources :customers, only: :none do
-        resources :invoices, only: [:index], controller: 'customers/cust_invoices'
-        resources :transactions, only: [:index], controller: 'customers/cust_transactions'
-        resources :favorite_merchant, only: [:index], controller: 'customers/fav_merchant'
+        scope path: ':customer_id' do
+          resources :invoices, only: [:index]
+          resources :transactions, only: [:index]
+          resources :favorite_merchant, only: [:index]
+        end
       end
 
       namespace :merchants do
-        resources :find, only: [:index], controller: 'find_merchant'
-        resources :find_all, only: [:index], controller: 'find_all_merchants'
+        resources :find, only: [:index]
+        resources :find_all, only: [:index]
         resources :random, only: [:index]
-        resources :most_revenue, only: [:index], controller: 'most_revenue'
-        resources :most_items, only: [:index], controller: 'most_items'
-        resources :revenue, only: [:index], controller: 'top_revenue'
-      end
+        resources :most_revenue, only: [:index]
+        resources :most_items, only: [:index]
+        resources :revenue, only: [:index]
 
-      resources :merchants, only: :none do
-        resources :revenue, only: [:index], controller: 'merchants/merchant_revenue'
-        resources :favorite_customer, only: [:index], controller: 'merchants/merchant_fav_customer'
-        resources :customers_with_pending_invoices, only: [:index], controller: 'merchants/pending_invoices'
-        resources :items, only: [:index], controller: 'merchants/items'
-        resources :invoices, only: [:index], controller: 'merchants/invoices'
+        scope path: ':merchant_id' do
+          resources :revenue, only: [:index], action: 'show'
+          resources :favorite_customer, only: [:index]
+          resources :customers_with_pending_invoices, only: [:index]
+          resources :items, only: [:index]
+          resources :invoices, only: [:index]
+        end
       end
-
+      
       namespace :items do
         resources :find, only: [:index], controller: 'find_item'
         resources :find_all, only: [:index], controller: 'find_all_items'

@@ -1,4 +1,4 @@
-class MerchantRevenueSerializer < ActiveModel::Serializer
+class RevenueSerializer < ActiveModel::Serializer
   attributes :revenue
 
   def revenue

@@ -1,4 +1,4 @@
-class Api::V1::Customers::FindCustomerController < ApplicationController
+class Api::V1::Customers::FindController < ApplicationController
 
   def index
     customer = Customer.find_by(find_params)
