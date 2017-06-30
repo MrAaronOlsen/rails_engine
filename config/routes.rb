@@ -30,56 +30,56 @@ Rails.application.routes.draw do
           resources :invoices, only: [:index]
         end
       end
-      
-      namespace :items do
-        resources :find, only: [:index], controller: 'find_item'
-        resources :find_all, only: [:index], controller: 'find_all_items'
-        resources :random, only: [:index]
-        resources :most_revenue, only: [:index], controller: 'most_revenue'
-        resources :most_items, only: [:index], controller: 'most_items'
-      end
 
-      resources :items, only: :none do
-        resources :best_day, only: [:index], controller: 'items/best_day'
-        resources :invoice_items, only: [:index], controller: 'items/invoice_items'
-        resources :merchant, only: [:index], controller: 'items/merchant'
+      namespace :items do
+        resources :find, only: [:index]
+        resources :find_all, only: [:index]
+        resources :random, only: [:index]
+        resources :most_revenue, only: [:index]
+        resources :most_items, only: [:index]
+
+        scope path: ':item_id' do
+          resources :best_day, only: [:index]
+          resources :invoice_items, only: [:index]
+          resources :merchant, only: [:index]
+        end
       end
 
       namespace :invoices do
-        resources :find, only: [:index], controller: 'find_invoice'
-        resources :find_all, only: [:index], controller: 'find_all_invoices'
+        resources :find, only: [:index]
+        resources :find_all, only: [:index]
         resources :random, only: [:index]
-        resources :find, only: [:index], controller: 'find_invoice_item'
-        resources :find_all, only: [:index], controller: 'find_all_invoice_items'
-      end
+        resources :find, only: [:index]
+        resources :find_all, only: [:index]
 
-      resources :invoices, only: :none do
-        resources :transactions, only: [:index], controller: 'invoices/transactions'
-        resources :invoice_items, only: [:index], controller: 'invoices/invoice_items'
-        resources :items, only: [:index], controller: 'invoices/items'
-        resources :customer, only: [:index], controller: 'invoices/customer'
-        resources :merchant, only: [:index], controller: 'invoices/merchant'
+        scope path: ':invoice_id' do
+          resources :transactions, only: [:index]
+          resources :invoice_items, only: [:index]
+          resources :items, only: [:index]
+          resources :customer, only: [:index]
+          resources :merchant, only: [:index]
+        end
       end
 
       namespace :invoice_items do
-        resources :find, only: [:index], controller: 'find_invoice_item'
-        resources :find_all, only: [:index], controller: 'find_all_invoice_items'
+        resources :find, only: [:index]
+        resources :find_all, only: [:index]
         resources :random, only: [:index]
-      end
 
-      resources :invoice_items, only: :none do
-        resources :invoice, only: [:index], controller: 'invoice_items/invoice'
-        resources :item, only: [:index], controller: 'invoice_items/item'
+        scope path: ':invoice_item_id' do
+          resources :invoice, only: [:index]
+          resources :item, only: [:index]
+        end
       end
 
       namespace :transactions do
-        resources :find, only: [:index], controller: 'find_transaction'
-        resources :find_all, only: [:index], controller: 'find_all_transactions'
+        resources :find, only: [:index]
+        resources :find_all, only: [:index]
         resources :random, only: [:index]
-      end
 
-      resources :transactions, only: :none  do
-        resources :invoice, only: [:index], controller: 'transactions/invoice'
+        scope path: ':transaction_id' do
+          resources :invoice, only: [:index]
+        end
       end
 
       resources :customers, only: [:show, :index]

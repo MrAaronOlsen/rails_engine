@@ -1,4 +1,4 @@
-class Api::V1::Invoices::FindInvoiceController < ApplicationController
+class Api::V1::Invoices::FindController < ApplicationController
 
   def index
     invoice = Invoice.find_by(find_params)

@@ -1,4 +1,4 @@
-class Api::V1::Transactions::FindTransactionController < ApplicationController
+class Api::V1::Transactions::FindController < ApplicationController
 
   def index
     transaction = Transaction.find_by(find_params)

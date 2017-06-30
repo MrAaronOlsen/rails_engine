@@ -1,4 +1,4 @@
-class Api::V1::Items::FindAllItemsController < ApplicationController
+class Api::V1::Items::FindAllController < ApplicationController
 
   def index
     items = Item.where(find_params)

@@ -272,20 +272,11 @@
         1,
         1,
         null,
-        null,
         1,
         1,
         1,
         1,
         null,
-        null,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
         null,
         null,
         1,
@@ -294,7 +285,7 @@
         1,
         1,
         1,
-        null,
+        1,
         null,
         1,
         1,
@@ -304,11 +295,6 @@
         1,
         null,
         null,
-        1,
-        1,
-        1,
-        1,
-        null,
         null,
         1,
         1,
@@ -317,6 +303,12 @@
         1,
         1,
         null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
         null,
         1,
         1,
@@ -325,26 +317,34 @@
         1,
         1,
         null,
-        null,
         1,
         1,
-        1,
-        1,
-        null,
-        null,
-        1,
-        1,
-        1,
-        null,
-        null,
         1,
         1,
         1,
         1,
         null,
         null,
+        null,
         1,
         1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null,
         null,
         null,
         1,
@@ -1888,7 +1888,7 @@
         1,
         null
       ],
-      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/customers/find_customer_controller.rb": [
+      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/customers/find_controller.rb": [
         1,
         null,
         1,
@@ -1901,7 +1901,7 @@
         null,
         null
       ],
-      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/customers/find_all_customers_controller.rb": [
+      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/customers/find_all_controller.rb": [
         1,
         null,
         1,
@@ -1933,7 +1933,7 @@
         1,
         null
       ],
-      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/invoice_items/find_invoice_item_controller.rb": [
+      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/invoice_items/find_controller.rb": [
         1,
         null,
         1,
@@ -1947,7 +1947,7 @@
         null,
         null
       ],
-      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/invoice_items/find_all_invoice_items_controller.rb": [
+      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/invoice_items/find_all_controller.rb": [
         1,
         null,
         1,
@@ -1980,7 +1980,7 @@
         1,
         null
       ],
-      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/invoices/find_invoice_controller.rb": [
+      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/invoices/find_controller.rb": [
         1,
         null,
         1,
@@ -1994,7 +1994,7 @@
         null,
         null
       ],
-      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/invoices/find_all_invoices_controller.rb": [
+      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/invoices/find_all_controller.rb": [
         1,
         null,
         1,
@@ -2054,7 +2054,7 @@
         null,
         null
       ],
-      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/items/find_item_controller.rb": [
+      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/items/find_controller.rb": [
         1,
         null,
         1,
@@ -2068,7 +2068,7 @@
         null,
         null
       ],
-      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/items/find_all_items_controller.rb": [
+      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/items/find_all_controller.rb": [
         1,
         null,
         1,
@@ -2111,25 +2111,35 @@
         null,
         null
       ],
-      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/merchants/top_revenue_controller.rb": [
+      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/merchants/revenue_controller.rb": [
         1,
         null,
         1,
         1,
         null,
+        null,
+        null,
+        1,
+        2,
+        2,
+        null,
+        null
+      ],
+      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/serializers/total_revenue_serializer.rb": [
+        1,
+        1,
         null,
         1,
         1,
         null,
         null
       ],
-      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/merchants/merchant_revenue_controller.rb": [
+      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/serializers/revenue_serializer.rb": [
+        1,
         1,
         null,
         1,
         2,
-        null,
-        2,
         1,
         null,
         1,
@@ -2137,7 +2147,7 @@
         null,
         null
       ],
-      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/merchants/merchant_fav_customer_controller.rb": [
+      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/merchants/favorite_customer_controller.rb": [
         1,
         null,
         1,
@@ -2147,7 +2157,7 @@
         null,
         null
       ],
-      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/merchants/pending_invoices_controller.rb": [
+      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/merchants/customers_with_pending_invoices_controller.rb": [
         1,
         null,
         1,
@@ -2171,7 +2181,7 @@
         null,
         null
       ],
-      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/merchants/find_merchant_controller.rb": [
+      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/merchants/find_controller.rb": [
         1,
         null,
         1,
@@ -2184,7 +2194,7 @@
         null,
         null
       ],
-      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/merchants/find_all_merchants_controller.rb": [
+      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/merchants/find_all_controller.rb": [
         1,
         null,
         1,
@@ -2216,7 +2226,7 @@
         1,
         null
       ],
-      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/transactions/find_transaction_controller.rb": [
+      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/transactions/find_controller.rb": [
         1,
         null,
         1,
@@ -2230,7 +2240,7 @@
         null,
         null
       ],
-      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/transactions/find_all_transactions_controller.rb": [
+      "/Users/wolverine/workshop/turing/mod3/projects/rails_engine/app/controllers/api/v1/transactions/find_all_controller.rb": [
         1,
         null,
         1,
@@ -2245,6 +2255,6 @@
         null
       ]
     },
-    "timestamp": 1498790173
+    "timestamp": 1498834483
   }
 }
