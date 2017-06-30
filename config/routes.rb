@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       namespace :customers do
         resources :find, only: [:index], controller: 'find_customer'
         resources :find_all, only: [:index], controller: 'find_all_customers'
+        resources :random, only: [:index]
       end
 
       resources :customers, only: :none do
@@ -16,6 +17,7 @@ Rails.application.routes.draw do
       namespace :merchants do
         resources :find, only: [:index], controller: 'find_merchant'
         resources :find_all, only: [:index], controller: 'find_all_merchants'
+        resources :random, only: [:index]
         resources :most_revenue, only: [:index], controller: 'most_revenue'
         resources :most_items, only: [:index], controller: 'most_items'
         resources :revenue, only: [:index], controller: 'top_revenue'
@@ -32,6 +34,7 @@ Rails.application.routes.draw do
       namespace :items do
         resources :find, only: [:index], controller: 'find_item'
         resources :find_all, only: [:index], controller: 'find_all_items'
+        resources :random, only: [:index]
         resources :most_revenue, only: [:index], controller: 'most_revenue'
         resources :most_items, only: [:index], controller: 'most_items'
       end
@@ -45,6 +48,7 @@ Rails.application.routes.draw do
       namespace :invoices do
         resources :find, only: [:index], controller: 'find_invoice'
         resources :find_all, only: [:index], controller: 'find_all_invoices'
+        resources :random, only: [:index]
         resources :find, only: [:index], controller: 'find_invoice_item'
         resources :find_all, only: [:index], controller: 'find_all_invoice_items'
       end
@@ -60,6 +64,7 @@ Rails.application.routes.draw do
       namespace :invoice_items do
         resources :find, only: [:index], controller: 'find_invoice_item'
         resources :find_all, only: [:index], controller: 'find_all_invoice_items'
+        resources :random, only: [:index]
       end
 
       resources :invoice_items, only: :none do
@@ -70,6 +75,7 @@ Rails.application.routes.draw do
       namespace :transactions do
         resources :find, only: [:index], controller: 'find_transaction'
         resources :find_all, only: [:index], controller: 'find_all_transactions'
+        resources :random, only: [:index]
       end
 
       resources :transactions, only: :none  do

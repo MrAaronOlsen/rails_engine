@@ -9,4 +9,8 @@ class Invoice < ApplicationRecord
   validates_presence_of :status
 
   enum status: ['shipped']
+
+  def self.random
+    Invoice.limit(1).order("RANDOM()")
+  end
 end

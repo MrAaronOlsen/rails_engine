@@ -22,6 +22,10 @@ class Item < ApplicationRecord
   end
 
   class << self
+    def random
+      Item.limit(1).order("RANDOM()")
+    end
+
     def most_revenue(quantity)
       Item.find_by_sql [
         "SELECT items.*, sum(invoice_items.quantity * invoice_items.unit_price) AS total_revenue

@@ -44,6 +44,10 @@ class Merchant <  ApplicationRecord
   end
 
   class << self
+    def random
+      Merchant.limit(1).order("RANDOM()")
+    end
+
     def with_most_revenue(quantity)
       Merchant.find_by_sql [
         "SELECT merchants.name, merchants.id, sum(invoice_items.quantity * invoice_items.unit_price) AS total_revenue

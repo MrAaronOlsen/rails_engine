@@ -6,6 +6,10 @@ class InvoiceItem < ApplicationRecord
 
   before_create :convert_price
 
+  def self.random
+    InvoiceItem.limit(1).order("RANDOM()")
+  end
+
   private
 
   def convert_price

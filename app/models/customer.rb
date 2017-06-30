@@ -11,4 +11,8 @@ class Customer <  ApplicationRecord
       .group("merchants.id")
       .order("total_invoices DESC").limit(1)
   end
+
+  def self.random
+    Customer.limit(1).order("RANDOM()")
+  end
 end
