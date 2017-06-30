@@ -7,10 +7,11 @@
 ### Install
 
 * Clone repo, 
-* $ bundle install, to install all dependencies
-* $ rake db:setup, to initialize database
-* $ rake import, to seed database
-* $ rspec, to run test suite
+* $ bundle install, to install all dependencies.
+* $ bundle update, to update gems. Gems are versioned, but some need to be up to date.
+* $ rake db:setup, to initialize database.
+* $ rake import, to seed database.
+* $ rspec, to run test suite.
 
 ### Use
 
