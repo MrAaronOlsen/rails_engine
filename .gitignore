@@ -19,9 +19,10 @@ Gemfile.lock
 gemfiles/*.lock
 
 ## PROJECT::GENERAL
-coverage
+/coverage
 rdoc
 pkg
 tmp
 capybara*.html
 .rvmrc
+
