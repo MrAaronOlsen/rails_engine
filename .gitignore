@@ -14,3 +14,15 @@
 !/tmp/.keep
 
 .byebug_history
+
+Gemfile.lock
+gemfiles/*.lock
+
+## PROJECT::GENERAL
+/coverage
+rdoc
+pkg
+tmp
+capybara*.html
+.rvmrc
+
