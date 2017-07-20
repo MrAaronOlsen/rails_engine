@@ -28,16 +28,17 @@ Rails Engine is an example API app built on Rails serving up endpoints with sear
       * /api/v1/object/find?object.attribute=attribute
     * find_all
       * /api/v1/object/find_all?object.attribute=attribute
-    * random, /api/v1/object/random
+    * random
+      * /api/v1/object/random
     
 ##### Object Attributes
 
- * Customers: id, first_name, last_name, created_at, updated_at
- * Merchants: id, name, created_at, updated_at
- * Invoices: id, customer_id, merchant_id, status, created_at, updated_at
- * Items: id, name, description, unit_price, merchant_id, created_at, updated_at
- * Invoice Items: id, item_id, invoice_id, quantity, unit_price, created_at, updated_at
- * Transactions: id, invoice_id, credit_card_number, result, created_at, updated_at
+ * customers: id, first_name, last_name, created_at, updated_at
+ * merchants: id, name, created_at, updated_at
+ * invoices: id, customer_id, merchant_id, status, created_at, updated_at
+ * items: id, name, description, unit_price, merchant_id, created_at, updated_at
+ * invoice Items: id, item_id, invoice_id, quantity, unit_price, created_at, updated_at
+ * transactions: id, invoice_id, credit_card_number, result, created_at, updated_at
 
  * [Schema](http://ondras.zarovi.cz/sql/demo/) saved as: rails-engine-mraaronolsen
   
