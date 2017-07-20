@@ -1,4 +1,6 @@
-# README
+## Rails Engine
+Rails Engine is an example API app built on Rails serving up endpoints with search functionality and business logic.
+
 ### Dependencies
 
 * Ruby 2.4.1
